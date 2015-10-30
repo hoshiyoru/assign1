@@ -1,4 +1,3 @@
-/* please implement your assign1 code in this file. */
 PImage fighterImg;
 PImage bg1Img;
 PImage bg2Img;
@@ -11,7 +10,7 @@ int h;
 int tX;
 int tY;
 int e;
-int b;
+int b1;
 int b2;
 
 void setup () {
@@ -21,7 +20,7 @@ void setup () {
   f = 590;
   e = 50;
   tY = 60;
-  b = 0;
+  b1 = -640;
   b2 = 0;
   e=floor(random(440));
   h=floor(random(207));
@@ -39,18 +38,23 @@ void setup () {
 void draw(){
   
   //bg1,bg2.
-  b2++;
-  b2 %=640;
   image(bg2Img,b2,0);
-  b++;
-  b %=1280;
-  image(bg1Img,b-640,0);
+  b2++;
+  if (b2 == 640){
+    b2 = -640;
+  }
+  
+  image(bg1Img,b1,0);
+  b1++;
+  if (b1 == 640){
+    b1 = -640;
+  }
   
   //fighter.
-  x +=4;
-  x %=640;
-  image(fighterImg,f,200);
-  
+
+ image(fighterImg,f,200);
+    x +=4;
+    x %=640;
   //enemy.
   image(enemyImg,x,e);
 
@@ -64,4 +68,3 @@ void draw(){
   //treasure.
   image(treasureImg,tX,tY);
 }
-
